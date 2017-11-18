@@ -17,8 +17,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "API_BASE_URL", "\"https://api.64clouds.com\""
+        }
+        debug {
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "API_BASE_URL", "\"https://api.64clouds.com\""
         }
     }
 
@@ -32,4 +38,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // 网络
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    // 图片处理 glide可高斯模糊
+    compile 'com.github.bumptech.glide:glide:4.3.0'
+    // GlideMode注解
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.0'
+    compile "com.github.bumptech.glide:okhttp3-integration:4.3.0"
+
 }
